@@ -1,0 +1,98 @@
+RESOURCE_EXHAUSTED: Out of memory while trying to allocate 8000000000 bytes.
+BufferAssignment OOM Debugging.
+BufferAssignment stats:
+             parameter allocation:    1.53MiB
+              constant allocation:         0B
+        maybe_live_out allocation:    7.45GiB
+     preallocated temp allocation:         0B
+                 total allocation:    7.45GiB
+              total fragmentation:         0B (0.00%)
+Peak buffers:
+	Buffer 1:
+		Size: 7.45GiB
+		Operator: op_name="jit(subtract)/jit(main)/sub" source_file="/home/jgbarcos/code/better_bo_sampling/./scripts/run_experiments.py" source_line=115
+		XLA Label: fusion
+		Shape: f64[10000,10000,10]
+		==========================
+
+	Buffer 2:
+		Size: 781.2KiB
+		Entry Parameter Subshape: f64[10000,10]
+		==========================
+
+	Buffer 3:
+		Size: 781.2KiB
+		Entry Parameter Subshape: f64[10000,10]
+		==========================
+
+jax.errors.SimplifiedTraceback: For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jgbarcos/code/better_bo_sampling/./scripts/run_experiments.py", line 312, in <module>
+    work_id, res = task_run_experiment(work_to_run[i])
+  File "/home/jgbarcos/code/better_bo_sampling/bbs/experiment_runner.py", line 112, in task_run_experiment
+    return _task_run_experiment(**d)
+  File "/home/jgbarcos/code/better_bo_sampling/bbs/experiment_runner.py", line 125, in _task_run_experiment
+    res = run_experiment(config=config, seed=seed, **kwargs) #num_bo_steps=num_bo_steps, selection_fn=selection_fn,
+  File "/home/jgbarcos/code/better_bo_sampling/bbs/experiment_runner.py", line 163, in run_experiment
+    x_query = selection_fn(selection_key, predict_fn, posterior_sample_fn, config.bounds, x, y, **selection_args)
+  File "/home/jgbarcos/code/better_bo_sampling/./scripts/run_experiments.py", line 60, in sample_thompson
+    x_query, _ = select_with_thompson_sampling(selection_key, posterior_sample_fn, bounds, num_queries=num_queries, num_points=num_points)
+  File "/home/jgbarcos/code/better_bo_sampling/./scripts/run_experiments.py", line 38, in select_with_thompson_sampling
+    x, y = thompson_sampling(key, posterior_sample_fn, bounds, num_queries, num_points)
+  File "/home/jgbarcos/code/better_bo_sampling/bbs/selection.py", line 29, in thompson_sampling
+    post_samples = posterior_sample_fn(key, sample_at, shape=(num_queries,))
+  File "/home/jgbarcos/code/better_bo_sampling/bbs/gaussian_process.py", line 41, in posterior_sample_fn
+    return gp.condition(y, xtest).gp.sample(key, shape)
+  File "/home/jgbarcos/anaconda3/envs/gpu_better_mcmc/lib/python3.10/site-packages/equinox/_module.py", line 1053, in __call__
+    return self.__func__(self.__self__, *args, **kwargs)
+  File "/home/jgbarcos/anaconda3/envs/gpu_better_mcmc/lib/python3.10/site-packages/tinygp/gp.py", line 202, in condition
+    covariance_value = self.solver.condition(kernel, X_test, noise)
+  File "/home/jgbarcos/anaconda3/envs/gpu_better_mcmc/lib/python3.10/site-packages/equinox/_module.py", line 1053, in __call__
+    return self.__func__(self.__self__, *args, **kwargs)
+  File "/home/jgbarcos/anaconda3/envs/gpu_better_mcmc/lib/python3.10/site-packages/tinygp/solvers/direct.py", line 92, in condition
+    Kss = kernel(X_test, X_test) + noise
+  File "/home/jgbarcos/anaconda3/envs/gpu_better_mcmc/lib/python3.10/site-packages/tinygp/kernels/base.py", line 94, in __call__
+    k = jax.vmap(jax.vmap(self.evaluate, in_axes=(None, 0)), in_axes=(0, None))(
+  File "/home/jgbarcos/anaconda3/envs/gpu_better_mcmc/lib/python3.10/site-packages/tinygp/kernels/base.py", line 187, in evaluate
+    return self.kernel1.evaluate(X1, X2) * self.kernel2.evaluate(X1, X2)
+  File "/home/jgbarcos/anaconda3/envs/gpu_better_mcmc/lib/python3.10/site-packages/tinygp/kernels/stationary.py", line 151, in evaluate
+    r = self.distance.distance(X1, X2) / self.scale
+  File "/home/jgbarcos/anaconda3/envs/gpu_better_mcmc/lib/python3.10/site-packages/tinygp/kernels/distance.py", line 52, in distance
+    r1 = L1Distance().distance(X1, X2)
+  File "/home/jgbarcos/anaconda3/envs/gpu_better_mcmc/lib/python3.10/site-packages/tinygp/kernels/distance.py", line 45, in distance
+    return jnp.sum(jnp.abs(X1 - X2))
+  File "/home/jgbarcos/anaconda3/envs/gpu_better_mcmc/lib/python3.10/site-packages/jax/_src/numpy/array_methods.py", line 737, in op
+    return getattr(self.aval, f"_{name}")(self, *args)
+  File "/home/jgbarcos/anaconda3/envs/gpu_better_mcmc/lib/python3.10/site-packages/jax/_src/numpy/array_methods.py", line 265, in deferring_binary_op
+    return binary_op(*args)
+jaxlib.xla_extension.XlaRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 8000000000 bytes.
+BufferAssignment OOM Debugging.
+BufferAssignment stats:
+             parameter allocation:    1.53MiB
+              constant allocation:         0B
+        maybe_live_out allocation:    7.45GiB
+     preallocated temp allocation:         0B
+                 total allocation:    7.45GiB
+              total fragmentation:         0B (0.00%)
+Peak buffers:
+	Buffer 1:
+		Size: 7.45GiB
+		Operator: op_name="jit(subtract)/jit(main)/sub" source_file="/home/jgbarcos/code/better_bo_sampling/./scripts/run_experiments.py" source_line=115
+		XLA Label: fusion
+		Shape: f64[10000,10000,10]
+		==========================
+
+	Buffer 2:
+		Size: 781.2KiB
+		Entry Parameter Subshape: f64[10000,10]
+		==========================
+
+	Buffer 3:
+		Size: 781.2KiB
+		Entry Parameter Subshape: f64[10000,10]
+		==========================
+
+

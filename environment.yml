@@ -1,0 +1,69 @@
+name: gpu_better_mcmc
+channels:
+  - conda-forge
+  - nvidia
+dependencies:
+  - python=3.10
+  - pip
+  # ML libraries
+  - nvidia/label/cuda-12.1.0::cuda-toolkit
+  - nvidia/label/cuda-12.1.0::cuda-nvcc
+  - nvidia/label/cuda-12.1.0::cuda
+  - jaxlib=0.4.27=*cuda*
+  - jax=0.4.27
+  # Developer tools
+  - pytest
+  - pre-commit
+  - coverage
+  # Notebooks
+  - jupyter
+  - jupyterlab
+  # More ML libraries
+  - numpy<2
+  - flax
+  - optax
+  - jaxopt
+  - blackjax
+  - tinygp
+
+  - matplotlib
+  - tqdm
+
+  - pip:
+    - jaxkern
+    - print-versions
+  # - torch
+
+
+# name: gpu_better_mcmc
+# channels:
+#   - conda-forge
+#   - nvidia
+# dependencies:
+#   - python=3.10
+#   - pip
+#   # ML libraries
+#   - cuda-nvcc
+#   - cudnn
+#   # Developer tools
+#   - pytest
+#   - pre-commit
+#   - coverage
+#   # Notebooks
+#   - jupyter
+#   - jupyterlab
+#   - pip:
+#     - numpy<2
+#     - jax[cuda11]==0.4.24
+#     - flax
+#     - optax
+#     - jaxopt
+#     - blackjax
+#     - jaxkern
+#     - tinygp
+#     # Optional or for notebooks
+#     - matplotlib
+#     - tqdm
+#     - print-versions
+#     # For testing
+#     - torch

@@ -1,0 +1,13 @@
+{'config_bo': {'build_model': <function build_gp at 0x7f9760333400>,
+               'init_model_params': {'gp_mean': Array(0., dtype=float64),
+                                     'log_gp_amp': Array(-2.30258509, dtype=float64, weak_type=True),
+                                     'log_gp_scale': Array(0., dtype=float64, weak_type=True)},
+               'num_init_points': 6,
+               'train_model': <function train_gp_params at 0x7f976049e830>},
+ 'num_bo_steps': 150,
+ 'problem_args': {},
+ 'problem_name': 'rosenbrock',
+ 'seed': 4,
+ 'selection_args': {},
+ 'selection_fn': <function max_log_ei at 0x7f9760333130>,
+ 'work_identifier': ('rosenbrock', 'max_log_ei')}

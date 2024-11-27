@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/jgbarcos/code/better_bo_sampling/./scripts/run_experiments.py", line 381, in <module>
+    try:
+  File "/home/jgbarcos/code/better_bo_sampling/bbs/experiment_runner.py", line 112, in task_run_experiment
+    return _task_run_experiment(**d)
+  File "/home/jgbarcos/code/better_bo_sampling/bbs/experiment_runner.py", line 125, in _task_run_experiment
+    res = run_experiment(config=config, seed=seed, **kwargs) #num_bo_steps=num_bo_steps, selection_fn=selection_fn,
+  File "/home/jgbarcos/code/better_bo_sampling/bbs/experiment_runner.py", line 163, in run_experiment
+    x_query = selection_fn(selection_key, predict_fn, posterior_sample_fn, config.bounds, x, y, **selection_args)
+  File "/home/jgbarcos/code/better_bo_sampling/./scripts/run_experiments.py", line 138, in sample_boltzmann
+    x_query, _ = select_with_boltzmann_sampling(selection_key, log_crit_fn, bounds, num_queries=num_queries, sampler=sampler, sampler_config=sampler_config, jax_compile=jax_compile)
+  File "/home/jgbarcos/code/better_bo_sampling/./scripts/run_experiments.py", line 77, in select_with_boltzmann_sampling
+    x = boltzmann_sampling(key, log_crit_fn, bounds, sampler, sampler_config, num_queries, jax_compile=jax_compile)
+  File "/home/jgbarcos/code/better_bo_sampling/bbs/selection.py", line 85, in boltzmann_sampling
+    assert(num_queries <= samples.shape[0])
+AssertionError
